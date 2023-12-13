@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: ls -la
+      - run: ls -la hugo
 
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
@@ -21,4 +21,4 @@ jobs:
         run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy with rsync
-        run: rsync -og --chown=www-data:www-data -av --delete hugo ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/kb-sessions.fr/
+        run: rsync -og --chown=www-data:www-data -av --delete ./hugo/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/kb-sessions.fr/
