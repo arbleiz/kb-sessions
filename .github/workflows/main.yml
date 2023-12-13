@@ -1,7 +1,14 @@
 name: first-github-action
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
-  write-to-console:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Hello world!'
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
