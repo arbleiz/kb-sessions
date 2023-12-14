@@ -39,7 +39,7 @@ draft: false
 | **The Whinny Hills of Leitrim**  | Dmix | [TheSession.org](https://thesession.org/tunes/8976) |
 
 
-### Polka
+### Polkas
 
 | Title                             | Key | Links                     |
 |-----------------------------------|-----|---------------------------|
