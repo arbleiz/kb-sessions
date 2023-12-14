@@ -1,8 +1,9 @@
 ---
-title: "New"
-# date: 2023-12-20T09:03:20-08:00
+title: "Ti Devine's 12-12-2023"
+# date: 2023-12-14T21:48:02+01:00
 draft: false
 ---
+
 
 ### Reels
 
@@ -14,19 +15,17 @@ draft: false
 | **Mayor Harrison’s Fedora**      | Em   | [TheSession.org](https://thesession.org/tunes/367) (5th) |
 | **Cooley's Reel**                | Em   | [TheSession.org](https://thesession.org/tunes/1)    |
 | **Saint Anne's**                 | D    | [TheSession.org](https://thesession.org/tunes/103)  |
-
+| **Banks of lough gowna**         | D    | [TheSession.org](https://thesession.org/tunes/)  |
+| **Road to glountane**            | D    | [TheSession.org](https://thesession.org/tunes/)  |
+| **Tam lin**                      | D    | [TheSession.org](https://thesession.org/tunes/)  |
+| **high drive**                   | D    | [TheSession.org](https://thesession.org/tunes/)  |
 
 
 ### Jigs
 
 | Title                            | Key  | Links                                               |
 |----------------------------------|------|-----------------------------------------------------|
-| **Monk's Jig**                   | Am    | [TheSession.org](https://thesession.org/tunes/1185) |
+| **Monk's Jig**                   | Am   | [TheSession.org](https://thesession.org/tunes/1185) |
+| **Out on the ocean**             | Am   | [TheSession.org](https://thesession.org/tunes/)     |
+| **lisnagunn**                    | G    | [TheSession.org](https://thesession.org/tunes/)     |
 
-
-Banks of lough gowna
-Out on the ocean
-Road to glountane
-Tam lin
-lisnagunn
-high drive
