@@ -4,21 +4,55 @@ on:
     branches:
       - main
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
+    - name: Latest version
+      uses: actions/checkout@v3
+      with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
-      - run: ls -la hugo/public
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
 
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: unnecessary
-          
-      - name: Adding Known Hosts
-        run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+    - name: Build Hugo Build
+      run: hugo
 
-      - name: Deploy with rsync
-        run: rsync -og --chown=www-data:www-data -av --delete ./hugo/public/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/kb-sessions.fr/
+    - uses: actions/upload-artifact@master
+      with:
+        name: kb-sessions
+        path: './public'
+
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        known_hosts: unnecessary
+        
+    - name: Adding Known Hosts
+      run: ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/download-artifact@master
+      with:
+        name: kb-sessions
+        path: './public'
+    - name: rsync deployments
+      uses: burnett01/rsync-deployments@5.2
+      with:
+        switches: -az --delete-after
+        path: './public/'
+        remote_path: ${{ secrets.DEPLOY_PATH }}
+        remote_host: ${{ secrets.DEPLOY_HOST }}
+        remote_user: ${{ secrets.DEPLOY_USER }}
+        remote_key: ${{ secrets.DEPLOY_SSH_KEY }}
+
+#- name: Deploy with rsync
+#      run: rsync -og --chown=www-data:www-data -av --delete ./hugo/public/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/kb-sessions.fr/
+
