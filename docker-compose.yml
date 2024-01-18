@@ -1,0 +1,6 @@
+services:
+  backend:
+    container_name: backend
+    image: ghcr.io/arbleiz/kb-sessions-backend:latest
+    ports:
+      - 8000:8000
